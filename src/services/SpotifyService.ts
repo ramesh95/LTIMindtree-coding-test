@@ -20,6 +20,7 @@ class SpotifyService {
 
   //   return trackRes;
   // }
+
   private static async getAccessToken(): Promise<string> {
     const response = await axios.post<any>(
       'https://accounts.spotify.com/api/token',
@@ -41,7 +42,6 @@ class SpotifyService {
     const accessToken = await this.getAccessToken();
     const response = await axios.get(
       `https://api.spotify.com/v1/search?query=isrc:${isrc}&type=track&offset=${skip}&limit=${limit}`,
-      // `https://api.spotify.com/v1/search?query=isrc:QM6N22289698&type=track&offset=0&limit=10`,
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,

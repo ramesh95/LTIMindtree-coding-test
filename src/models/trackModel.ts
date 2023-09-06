@@ -6,13 +6,11 @@ class Track extends Model {
   public duration!: number; 
   public releaseDate!: Date; 
   public popularity!: number; 
-
-  // Define associations
+  
   static associate(models: any) {
-    // Define a one-to-many relationship from Track to Artist
     Track.hasMany(models.Artist, {
-      foreignKey: 'trackID', // The foreign key in the Artist model
-      as: 'artists', // Alias for the association
+      foreignKey: 'trackID',
+      as: 'artists',
     });
   }
 }

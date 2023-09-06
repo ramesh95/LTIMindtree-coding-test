@@ -28,7 +28,8 @@ const sequelize = new Sequelize(dbName, userName, password, {
 });
 initTrackModel(sequelize);
 initArtistModel(sequelize);
-Track.associate({ Artist })
+Track.associate({ Artist });
+Artist.associate({ Track });
 
 sequelize
   .sync({ alter: true })

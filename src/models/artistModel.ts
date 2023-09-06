@@ -3,8 +3,14 @@ import { Model, DataTypes, Sequelize } from 'sequelize';
 class Artist extends Model {
   public artistID!: string;
   public trackID!: string;
-  public name!: string;
-  public uri!: string; 
+  public artistName!: string;
+
+  static associate(models: any) {
+    Artist.belongsTo(models.Track, {
+      foreignKey: 'trackID',
+      as: 'track', 
+    });
+  }
 }
 
 export const initArtistModel = (sequelize: Sequelize) => {
@@ -31,6 +37,5 @@ export const initArtistModel = (sequelize: Sequelize) => {
     }
   );
 };
-
 export { Artist };
 

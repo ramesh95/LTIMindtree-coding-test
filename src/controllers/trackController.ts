@@ -4,16 +4,6 @@ import { Artist } from '../models/artistModel';
 import { Op } from 'sequelize';
 import SpotifyService from '../services/SpotifyService';
 
-export const getAllUsers = async (req: Request, res: Response) => {
-    console.log("Hello jssssss finnnnn")
-  try {
-    const users = await Track.findAll();
-    res.json(users);
-  } catch (error) {
-    console.error('Error fetching users:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
 
 export const getTrackByIsrc = async (req: Request, res: Response) => {
   const isrc = req.params.isrc;
@@ -21,7 +11,7 @@ export const getTrackByIsrc = async (req: Request, res: Response) => {
     const track = await Track.findAll({
       where: {
         isrc: {
-          [Op.like]: `%${isrc}%`, // Use the LIKE operator with wildcards
+          [Op.like]: `%${isrc}%`,
         },
       },
     });
